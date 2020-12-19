@@ -4,296 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>It's your time!</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="center-container" id="root">
-        <div id="content"></div>
-        <div class="roller-container" id="loader">
-            <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        <div id="stage-1" class="stage">
+            <img src="assets/stage-1.jpg" alt="" srcset="" draggable="false">
+            <div id="stage-1-text" class="stage-text">ну се ты?</div>
+            <button id="stage-1-next" class="stage-next-btn">номана</button>
+            <div class="tip">*нажми "номана" если все номана</div>
         </div>
-        <div class="congrats" id="final">
-            <div class="header">Congratulations, sweetie!</div>
-            <div class="tip" id="tip"></div>
-            <div class="lds-heart"><div></div></div>
+        <div id="stage-1-1" class="stage">
+            <img src="assets/stage-1.jpg" alt="" srcset="" draggable="false">
+            <div id="stage-1-1-text" class="stage-text">я святой Котилай. я дарю подарки. но надо поиграть со мной. буш?</div>
+            <button id="stage-1-1-next" class="stage-next-btn">дя</button>
+        </div>
+        <div id="stage-1-2" class="stage">
+            <img src="assets/stage-1.jpg" alt="" srcset="" draggable="false">
+            <div id="stage-1-2-text" class="stage-text">будь внимательна пока проходишь игру. холосо?</div>
+            <button id="stage-1-2-next" class="stage-next-btn">холосо</button>
+        </div>
+        <div id="stage-2" class="stage">
+            <div id="stage-2-text" class="stage-text" draggable="false">хто тута самый сладенький?</div>
+            <img src="assets/stage-2.jpg" alt="" srcset="">
+            <div class="tip">*нажми и потяни мышкой что б использовать лассо</div>
+        </div>
+        <div id="stage-3" class="stage">
+            <div id="stage-3-text" class="stage-text">а де я спряталсе?</div>
+            <img src="assets/stage-3.jpg" alt="" srcset="" draggable="false">
+            <div class="trash" style="top: 259px; left: 100px; font-size: 1.2rem;">туть?</div>
+            <div class="trash" style="top: 507px; left: 134px; font-size: 2.2rem;">туть?</div>
+            <div class="trash" style="top: 337px; left: 520px; font-size: 1.6rem;">туть?</div>
+            <div class="tip">*лассо</div>
+        </div>
+        <div id="stage-4" class="stage">
+            <div id="stage-4-text" class="stage-text">покормишь?</div>
+            <img src="assets/stage-4.jpg" alt="" srcset="" draggable="false">
+            <div class="tip">*лассо</div>
+        </div>
+        <div id="stage-5" class="stage">
+            <div id="stage-5-text" class="stage-text">ну шо, пора ввести пин код. если была наблюдательной</div>
+            <input id="pin-code" type="text" class="pass" maxlength="4" name="pass-pin-code" >
+        </div>
+        <div id="stage-6" class="stage">
+            <div id="stage-6-text" class="stage-text">твой подарок будет туть</div>
+            <img src="assets/map.png" alt="" srcset="" id="map">
         </div>
     </div>
 
-    <style>
-        html, body {
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            background: #5f32a7;
-        }
+    <div id="modal-container" class="modal">
+        <div class="modal-content">
+            <!-- <span class="close">&times;</span> -->
+            <p id="modal-text"></p>
+        </div>
+      
+    </div>
 
-        .center-container {
-            width: 900px;
-            height: 100px;
-            transform: translate(-50%, -50%);
-            top: 50%;
-            left: 50%;
-            position: absolute;
-            text-align: center;
-        }
-
-        input.pin {
-            background: none;
-            background-color: #ffffff44;
-            border: none;
-            outline: none;
-            border-radius: 5px;
-            width: 20px;
-            height: 35px;
-            font-size: 1.35rem;
-            padding: 10px 20px;
-            color: #ffffffb4;
-            margin-right: 20px;
-            box-sizing: content-box;
-            transition: all cubic-bezier(0.6, -0.28, 0.735, 0.045) 0.4s;
-            text-align: center;
-        }
-
-        input.pin:focus {
-            box-shadow: bisque;
-        }
-
-        .congrats {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1.5rem;
-            color: #fcf;
-            display: none;
-        }
-
-        .header {
-            font-size: 1.2em;
-            margin: 20px;
-        }
-
-        .tip {
-            margin-bottom: 20px;
-        }
-
-        .roller-container {
-            display: none;
-            width: 100%;
-            position: absolute;
-            text-align: center;
-        }
-
-        .lds-roller {
-            display: inline-block;
-            position: relative;
-            width: 80px;
-            height: 80px;
-        }
-        .lds-roller div {
-            animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-            transform-origin: 40px 40px;
-        }
-        .lds-roller div:after {
-            content: " ";
-            display: block;
-            position: absolute;
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: #ffffff44;
-            margin: -4px 0 0 -4px;
-        }
-        .lds-roller div:nth-child(1) {
-            animation-delay: -0.036s;
-        }
-        .lds-roller div:nth-child(1):after {
-            top: 63px;
-            left: 63px;
-        }
-        .lds-roller div:nth-child(2) {
-            animation-delay: -0.072s;
-        }
-        .lds-roller div:nth-child(2):after {
-            top: 68px;
-            left: 56px;
-        }
-        .lds-roller div:nth-child(3) {
-            animation-delay: -0.108s;
-        }
-        .lds-roller div:nth-child(3):after {
-            top: 71px;
-            left: 48px;
-        }
-        .lds-roller div:nth-child(4) {
-            animation-delay: -0.144s;
-        }
-        .lds-roller div:nth-child(4):after {
-            top: 72px;
-            left: 40px;
-        }
-        .lds-roller div:nth-child(5) {
-            animation-delay: -0.18s;
-        }
-        .lds-roller div:nth-child(5):after {
-            top: 71px;
-            left: 32px;
-        }
-        .lds-roller div:nth-child(6) {
-            animation-delay: -0.216s;
-        }
-        .lds-roller div:nth-child(6):after {
-            top: 68px;
-            left: 24px;
-        }
-        .lds-roller div:nth-child(7) {
-            animation-delay: -0.252s;
-        }
-        .lds-roller div:nth-child(7):after {
-            top: 63px;
-            left: 17px;
-        }
-        .lds-roller div:nth-child(8) {
-            animation-delay: -0.288s;
-        }
-        .lds-roller div:nth-child(8):after {
-            top: 56px;
-            left: 12px;
-        }
-        @keyframes lds-roller {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .lds-heart {
-            display: inline-block;
-            position: relative;
-            width: 80px;
-            height: 80px;
-            transform: rotate(45deg);
-            transform-origin: 40px 40px;
-        }
-        .lds-heart div {
-            top: 32px;
-            left: 32px;
-            position: absolute;
-            width: 32px;
-            height: 32px;
-            background: #fcf;
-            animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
-        }
-        .lds-heart div:after,
-        .lds-heart div:before {
-            content: " ";
-            position: absolute;
-            display: block;
-            width: 32px;
-            height: 32px;
-            background: #fcf;
-        }
-        .lds-heart div:before {
-            left: -24px;
-            border-radius: 50% 0 0 50%;
-        }
-        .lds-heart div:after {
-            top: -24px;
-            border-radius: 50% 50% 0 0;
-        }
-        @keyframes lds-heart {
-            0% {
-                transform: scale(0.95);
-            }
-            5% {
-                transform: scale(1.1);
-            }
-            39% {
-                transform: scale(0.85);
-            }
-            45% {
-                transform: scale(1);
-            }
-            60% {
-                transform: scale(0.95);
-            }
-            100% {
-                transform: scale(0.9);
-            }
-        }
-
-    </style>
-    <script>
-        window.onload = () => {
-            const INPUT_ARRAY_SIZE = 9;
-
-            const container = document.getElementById('root');
-            const content = document.getElementById('content');
-            const loader = document.getElementById('loader');
-            const final = document.getElementById('final');
-            const tip = document.getElementById('tip');
-            addPinInputs(content);
-
-            function addPinInputs(anchor) {
-                const pinInputs = createPinInputArray();
-            
-                pinInputs.forEach(element => anchor.appendChild(element));
-                pinInputs[0].focus();
-                setInputProcessor(pinInputs);
-            }
-            
-            function setInputProcessor(inputArray) {
-                for (let i = 0; i < inputArray.length; i++) {
-                    if (i < inputArray.length - 1) {
-                        inputArray[i].addEventListener('input', (event) => {
-                            if (event.data !== null) {
-                                inputArray[i+1].focus();
-                            }
-                        });
-                    } else {
-                        inputArray[i].addEventListener('input', (event) => {
-                            checkPin(inputArray);
-                        });
-                    }
-                    inputArray[i].addEventListener('keydown', (event) => {
-                        if (event.key === 'Backspace' && i > 0) {
-                            event.preventDefault();
-                            inputArray[i-1].focus();
-                            inputArray[i-1].select();
-                            inputArray[i].value = '';
-                        }
-                    });
-                }
-            }
-
-            function createPinInputArray() {
-                const array = [];
-                for (let i = 0; i < INPUT_ARRAY_SIZE; i++) {
-                    array.push(createPinInputElement(i))
-                }
-                return array;
-            }
-
-            function createPinInputElement(index) {
-                const input = document.createElement('input');
-                input.setAttribute('type', 'text');
-                input.setAttribute('maxlength', '1');
-                input.classList = 'pin';
-                return input;
-            }
-
-            function checkPin(inputArray) {
-                const value = inputArray.map(element => element.value).join('')
-                if (value === '325337615') {
-                    loader.style.display = 'block';
-                    content.style.display = 'none';
-
-                    setTimeout(() => {
-                        loader.style.display = 'none';
-                        final.style.display = 'block';
-                        tip.innerText = 'Открой тумбочку в спальне :*'
-                    }, 2000)
-                }
-            }
-        }
-    </script>
+    <script src="index.js"></script>
 </body>
 </html>
