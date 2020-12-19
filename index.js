@@ -90,10 +90,7 @@ class Stage2Controller {
     }
 
     init() {
-        console.log('Stage2Controller init')
-
         this.mouseZoneSelection.init(zone => {
-            console.log(zone)
             const croissant = { end: {x: 449, y: 394}, start: {x: 344, y: 292} };
             const cakeRegion = { end: {x: 699, y: 401}, start: {x: 596, y: 285} }
             const cat = { end: {x: 941, y: 388}, start: {x: 816, y: 262} };
@@ -173,8 +170,6 @@ class Stage4Controller {
 
     init() {
         this.mouseZoneSelection.init(zone => {
-            console.log(zone)
-
             const coffee = { end: {x: 599, y: 168}, start: {x: 526, y: 109} };
             const sausage = { end: {x: 808, y: 193}, start: {x: 727, y: 140} };
             const hotdog = { end: {x: 943, y: 254}, start: {x: 880, y: 185} };
@@ -365,7 +360,7 @@ class Modal {
 }
 
 
-const mouseZoneSelection = new MouseZoneSelection('capturing', obj => console.log(obj));
+const mouseZoneSelection = new MouseZoneSelection('capturing');
 
 const stage6Ctrl = new Stage6Controller();
 const stage5Ctrl = new Stage5Controller(stage6Ctrl);
@@ -376,7 +371,3 @@ const stage12Ctrl = new Stage12Controller(stage2Ctrl);
 const stage11Ctrl = new Stage11Controller(stage12Ctrl);
 const stage1Ctrl = new Stage1Controller(stage11Ctrl);
 stage1Ctrl.init();
-
-
-/* 2125 */
-// 
